@@ -1,6 +1,8 @@
 package com.volvo.emsp.controller;
 
 import com.volvo.emsp.domain.Card;
+import com.volvo.emsp.domain.mapper.AccountSwitchMapper;
+import com.volvo.emsp.domain.mapper.CardSwitchMapper;
 import com.volvo.emsp.request.CardRequest;
 import com.volvo.emsp.response.CardResponse;
 import com.volvo.emsp.service.CardService;
@@ -21,27 +23,28 @@ public class CardController {
 
     @Autowired
     private CardService cardService;
+    @Autowired
+    private CardSwitchMapper cardSwitchMapper;
 
     @PostMapping
     public ResponseEntity<CardResponse> createCard(@RequestBody CardRequest request) {
-        CardResponse response = cardService.createCard(request);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        Card card = cardService.createCard(cardSwitchMapper.map2(request));
+        return ResponseEntity.status(HttpStatus.CREATED).body(cardSwitchMapper.map2(card));
     }
 
     @PostMapping("/{emaid}/assign")
     public ResponseEntity<CardResponse> assignCardToAccount(
             @PathVariable String emaid,
             @RequestParam String email) {
-        CardResponse response = cardService.assignCardToAccount(emaid, email);
-        return ResponseEntity.ok(response);
+        Card card = cardService.assignCardToAccount(emaid, email);
+        return ResponseEntity.ok(cardSwitchMapper.map2(card));
     }
 
     @PatchMapping("/{emaid}/status")
     public ResponseEntity<CardResponse> changeCardStatus(
             @PathVariable String emaid,
             @RequestParam Card.CardStatus newStatus) {
-        CardResponse response = cardService.changeCardStatus(emaid, newStatus);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(cardSwitchMapper.map2(cardService.changeCardStatus(emaid, newStatus)));
     }
 
     @GetMapping
@@ -49,7 +52,7 @@ public class CardController {
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime lastUpdated,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
-        Page<CardResponse> response = cardService.getCardsByLastUpdated(lastUpdated, page, size);
+        Page<CardResponse> response = cardSwitchMapper.map2(cardService.getCardsByLastUpdated(lastUpdated, page, size));
         return ResponseEntity.ok(response);
     }
 }

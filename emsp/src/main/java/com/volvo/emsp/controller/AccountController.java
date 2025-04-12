@@ -23,12 +23,13 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
 
-
+    @Autowired
+    private AccountSwitchMapper accountSwitchMapper;
 
     @PostMapping
-    public ResponseEntity<AccountResponse> createAccount(@Valid @RequestBody AccountRequest request) {
-        AccountResponse response = accountService.createAccount(request);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    public ResponseEntity<AccountResponse> createAccount(@Validated @RequestBody AccountRequest request) {
+        Account account = accountService.createAccount(accountSwitchMapper.map2(request));
+        return ResponseEntity.status(HttpStatus.CREATED).body(accountSwitchMapper.map2(account));
     }
 
     @PatchMapping("/{email}/status")

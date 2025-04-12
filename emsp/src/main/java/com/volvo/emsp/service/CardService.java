@@ -3,10 +3,13 @@ package com.volvo.emsp.service;
 
 import com.volvo.emsp.domain.Card;
 import com.volvo.emsp.reposity.CardRepository;
+import com.volvo.emsp.reposity.mapper.Card2EntitySwitchMapper;
+import com.volvo.emsp.request.CardRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class CardService {
@@ -14,17 +17,26 @@ public class CardService {
     @Autowired
     private CardRepository cardRepository;
 
-    public Card createCard(String emaid, String contractId) {
-        Card card = new Card();
-        card.setEmaid(emaid);
-        card.setContractId(contractId);
+    @Autowired
+    private Card2EntitySwitchMapper card2EntitySwitchMapper;
+
+    public Card createCard(Card card) {
         card.setStatus(Card.CardStatus.CREATED);
         card.setCreatedAt(LocalDateTime.now());
         card.setUpdatedAt(LocalDateTime.now());
-        return cardRepository.save(card);
+        return card2EntitySwitchMapper.map2(cardRepository.save(card2EntitySwitchMapper.map2(card)));
     }
 
-    public Card assignCardToAccount(Long cardId, Long accountId) {
+    public Card assignCardToAccount(String cardId, String accountId) {
         // Implementation omitted for brevity
+        return null;
+    }
+
+    public Card changeCardStatus(String emaid, Card.CardStatus newStatus) {
+        return null;
+    }
+
+    public List<Card> getCardsByLastUpdated(LocalDateTime lastUpdated, int page, int size) {
+        return null;
     }
 }

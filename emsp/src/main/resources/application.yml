@@ -31,6 +31,6 @@ spring:
     properties:
       hibernate:
         session_factory:
-          statement_inspector: com.lenovo.iop.user.auth.infrastructure.config.TenantStatementInterceptor
+          statement_inspector: com.volvo.emsp
 logging:
   config: classpath:logback-dev.xml

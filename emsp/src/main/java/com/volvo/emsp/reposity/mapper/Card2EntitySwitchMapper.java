@@ -2,12 +2,15 @@ package com.volvo.emsp.reposity.mapper;
 
 
 import com.volvo.emsp.domain.Account;
+import com.volvo.emsp.domain.Card;
 import com.volvo.emsp.reposity.entity.AccountEntity;
+import com.volvo.emsp.reposity.entity.CardEntity;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
-public interface Account2EntitySwitchMapper {
+public interface Card2EntitySwitchMapper {
 
-    AccountEntity map2(Account account);
-    Account map2(AccountEntity account);
+    CardEntity map2(Card card);
+
+    Card map2(CardEntity card);
 }
