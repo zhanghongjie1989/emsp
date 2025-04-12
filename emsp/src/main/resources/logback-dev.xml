@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <springProperty name="appName" source="spring.application.name"/>
+    <springProperty name="logLevel" source="logback.level" defaultValue="INFO"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>${logLevel}</level>
+        </filter>
+        <encoder>
+            <pattern>
+                %-15(%d{HH:mm:ss.SSS} [%thread]) %-5level %logger{32} - %msg%n
+            </pattern>
+            <charset>utf8</charset>
+        </encoder>
+    </appender>
+
+    <!--Note that: fileAppender needs to be removed in production env-->
+    <appender name="fileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>log/${appName}.log</file>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>${logLevel}</level>
+        </filter>
+        <encoder>
+            <pattern>
+                ${appName} - [%d][%-5p][%t][%c{0}][%M] - %m%n
+            </pattern>
+            <charset>utf8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>log/${appName}.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>300</maxHistory>
+            <totalSizeCap>50MB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+    <!--Note that: fileAppender needs to be removed in production env-->
+
+    <appender name="asyncFile" class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>0</discardingThreshold>
+        <queueSize>1000</queueSize>
+        <appender-ref ref="fileAppender"/>
+    </appender>
+
+    <appender name="asyncConsole" class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>0</discardingThreshold>
+        <queueSize>1000</queueSize>
+        <appender-ref ref="STDOUT"/>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="asyncConsole"/>
+        <appender-ref ref="asyncFile"/>
+    </root>
+</configuration>

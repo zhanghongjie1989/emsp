@@ -1,0 +1,10 @@
+[用户] --> [Azure/AWS LB]
+            |
+            v
+[Spring Boot App] <--> [MySQL DB]
+            |
+            v
+        [Monitoring]
+            |
+            v
+        [Logging]
