@@ -1,7 +1,6 @@
 package com.volvo.emsp.config;
 
-import com.volvo.application.service.UserAuthService;
-import com.volvo.representation.TenantInterceptor;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;

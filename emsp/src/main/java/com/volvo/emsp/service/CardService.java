@@ -1,7 +1,8 @@
 package com.volvo.emsp.service;
 
-import com.emsp.accountcard.entity.Card;
-import com.emsp.accountcard.repository.CardRepository;
+
+import com.volvo.emsp.domain.Card;
+import com.volvo.emsp.reposity.CardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

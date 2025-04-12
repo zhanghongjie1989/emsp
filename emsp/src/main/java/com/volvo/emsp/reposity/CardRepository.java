@@ -1,10 +1,10 @@
 package com.volvo.emsp.reposity;
 
-import com.emsp.accountcard.entity.Card;
+import com.volvo.emsp.reposity.entity.CardEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface CardRepository extends JpaRepository<Card, Long> {
-    List<Card> findByAccountId(Long accountId);
+public interface CardRepository extends JpaRepository<CardEntity, Long> {
+    List<CardEntity> findByAccountId(Long accountId);
 }

@@ -1,18 +1,29 @@
 package com.volvo.emsp.controller;
 
+import com.volvo.emsp.domain.Card;
+import com.volvo.emsp.request.CardRequest;
+import com.volvo.emsp.response.CardResponse;
+import com.volvo.emsp.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/api/cards")
+@Validated
 public class CardController {
 
     @Autowired
     private CardService cardService;
 
     @PostMapping
-    public ResponseEntity<CardResponse> createCard(@Valid @RequestBody CardRequest request) {
+    public ResponseEntity<CardResponse> createCard(@RequestBody CardRequest request) {
         CardResponse response = cardService.createCard(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
@@ -28,7 +39,7 @@ public class CardController {
     @PatchMapping("/{emaid}/status")
     public ResponseEntity<CardResponse> changeCardStatus(
             @PathVariable String emaid,
-            @RequestParam CardStatus newStatus) {
+            @RequestParam Card.CardStatus newStatus) {
         CardResponse response = cardService.changeCardStatus(emaid, newStatus);
         return ResponseEntity.ok(response);
     }

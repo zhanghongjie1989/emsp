@@ -1,5 +1,7 @@
 package com.volvo.emsp.common;
 
+import java.util.regex.Pattern;
+
 public class EMAIDValidator {
 
     private static final Pattern EMAID_PATTERN = Pattern.compile(
@@ -15,7 +17,7 @@ public class EMAIDValidator {
 
     public static void validate(String emaid) {
         if (!isValid(emaid)) {
-            throw new InvalidEMAIDException("Invalid EMAID format: " + emaid);
+            throw new RuntimeException("Invalid EMAID format: " + emaid);
         }
     }
 }
