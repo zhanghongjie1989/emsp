@@ -1,5 +1,5 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhsot:5432/iuop_main?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
-    password: q^kGYWd5
+    url: jdbc:postgresql://localhost:5431/iuop_main?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+    password: Adm@1234
     username: a_appconnect

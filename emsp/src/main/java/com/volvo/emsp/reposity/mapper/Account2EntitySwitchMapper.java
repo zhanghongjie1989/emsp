@@ -7,7 +7,6 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface Account2EntitySwitchMapper {
-
     AccountEntity map2(Account account);
     Account map2(AccountEntity account);
 }

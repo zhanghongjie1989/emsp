@@ -1,5 +1,6 @@
 package com.volvo.emsp.controller;
 
+import com.volvo.emsp.common.PageResult;
 import com.volvo.emsp.domain.Card;
 import com.volvo.emsp.domain.mapper.AccountSwitchMapper;
 import com.volvo.emsp.domain.mapper.CardSwitchMapper;
@@ -48,11 +49,10 @@ public class CardController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<CardResponse>> getCardsByLastUpdated(
+    public ResponseEntity<PageResult<CardResponse>> getCardsByLastUpdated(
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime lastUpdated,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
-        Page<CardResponse> response = cardSwitchMapper.map2(cardService.getCardsByLastUpdated(lastUpdated, page, size));
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(PageResult.getPageResult(page, size, cardSwitchMapper.map2(cardService.getCardsByLastUpdated(lastUpdated, page, size))));
     }
 }

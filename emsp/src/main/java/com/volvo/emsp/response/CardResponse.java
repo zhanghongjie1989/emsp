@@ -1,6 +1,7 @@
 package com.volvo.emsp.response;
 
 import com.volvo.emsp.domain.Account;
+import com.volvo.emsp.domain.Card;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,12 +19,7 @@ import java.time.LocalDateTime;
 public class CardResponse {
     private Long id;
     private String email;
-    private Account.AccountStatus status;
+    private Card.CardStatus status;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-
-    // Getters and Setters
-    public enum AccountStatus {
-        CREATED, ACTIVATED, DEACTIVATED
-    }
 }

@@ -23,5 +23,5 @@ public interface CardSwitchMapper {
 
     CardResponse map2(Card card);
 
-    Page<CardResponse> map2(List<Card> cardsByLastUpdated);
+    List<CardResponse> map2(List<Card> cardsByLastUpdated);
 }
