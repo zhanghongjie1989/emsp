@@ -1,21 +1,24 @@
+CREATE SEQUENCE account_auto_increase;
+CREATE TYPE account_status AS  ENUM('CREATED', 'ACTIVATED', 'DEACTIVATED');
+CREATE TYPE card_status AS  ENUM('CREATED', 'ASSIGNED', 'ACTIVATED', 'DEACTIVATED');
 CREATE TABLE accounts (
-                          id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                          id  serial PRIMARY KEY,
                           email VARCHAR(255) NOT NULL UNIQUE,
-                          status ENUM('CREATED', 'ACTIVATED', 'DEACTIVATED') NOT NULL DEFAULT 'CREATED',
+                          status account_status NOT NULL DEFAULT 'CREATED',
                           contract_id VARCHAR(255) NOT NULL,
                           created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                          last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+                          last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE cards (
-                       id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                       id  serial  PRIMARY KEY,
                        emaid VARCHAR(255) NOT NULL UNIQUE,
                        uid VARCHAR(255) NOT NULL,
                        visible_number VARCHAR(255) NOT NULL,
-                       status ENUM('CREATED', 'ASSIGNED', 'ACTIVATED', 'DEACTIVATED') NOT NULL DEFAULT 'CREATED',
+                       status card_status NOT NULL DEFAULT 'CREATED',
                        account_id BIGINT,
                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                       last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                       last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
                        FOREIGN KEY (account_id) REFERENCES accounts(id) ON DELETE SET NULL
 );
 
