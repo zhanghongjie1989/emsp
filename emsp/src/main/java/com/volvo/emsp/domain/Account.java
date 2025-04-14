@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Setter
 public class Account {
 
-    private Long id;
+    private String id;
     private String email;
     private AccountStatus status;
     private LocalDateTime createdAt;

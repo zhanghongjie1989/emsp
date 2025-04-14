@@ -12,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import javax.validation.Valid; // 添加这一行
 
 import java.time.LocalDateTime;
 
@@ -36,8 +35,8 @@ public class AccountController {
     public ResponseEntity<AccountResponse> changeAccountStatus(
             @PathVariable String email,
             @RequestParam Account.AccountStatus newStatus) {
-        AccountResponse response = accountService.changeAccountStatus(email, newStatus);
-        return ResponseEntity.ok(response);
+        Account account = accountService.changeAccountStatus(email, newStatus);
+        return ResponseEntity.ok(accountSwitchMapper.map2(account));
     }
 
     @GetMapping

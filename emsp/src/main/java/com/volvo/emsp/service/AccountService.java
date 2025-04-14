@@ -18,22 +18,21 @@ public class AccountService {
 
     @Autowired
     private AccountRepository accountRepository;
-    @Autowired
-    private AccountSwitchMapper accountSwitchMapper;
+
     @Autowired
     private Account2EntitySwitchMapper account2EntitySwitchMapper;
 
     public Account createAccount(Account account) {
-        accountRepository.findByEmail(email).orElseThrow(() -> new IllegalArgumentException("Account with this email already exists."));
+        accountRepository.findByEmail(account.getEmail()).orElseThrow(() -> new IllegalArgumentException("Account with this email already exists."));
         account.setStatus(Account.AccountStatus.CREATED);
         account.setCreatedAt(LocalDateTime.now());
         account.setUpdatedAt(LocalDateTime.now());
         return account2EntitySwitchMapper.map2(accountRepository.save(account2EntitySwitchMapper.map2(account)));
     }
 
-    public Account changeAccountStatus(Long id, Account.AccountStatus status) {
+    public Account changeAccountStatus(String email, Account.AccountStatus status) {
 
-        Account account = account2EntitySwitchMapper.map2(accountRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Account not found")));
+        Account account = account2EntitySwitchMapper.map2(accountRepository.findByEmail(email).orElseThrow(() -> new IllegalArgumentException("Account not found")));
         account.setStatus(status);
         account.setUpdatedAt(LocalDateTime.now());
         return account2EntitySwitchMapper.map2(accountRepository.save(account2EntitySwitchMapper.map2(account)));

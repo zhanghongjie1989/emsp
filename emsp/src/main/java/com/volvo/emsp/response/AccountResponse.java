@@ -1,7 +1,6 @@
 package com.volvo.emsp.response;
 
 import com.volvo.emsp.domain.Account;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +17,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AccountResponse {
-    private Long id;
+    private String id;
     private String email;
     private Account.AccountStatus status;
     private LocalDateTime createdAt;

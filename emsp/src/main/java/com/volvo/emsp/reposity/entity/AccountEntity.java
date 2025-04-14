@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 public class AccountEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     @Column(unique = true, nullable = false)
     private String email;
