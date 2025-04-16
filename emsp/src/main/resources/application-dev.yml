@@ -1,5 +1,5 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5431/emsp?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+    url: jdbc:postgresql://localhost:5431/postgres?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
     password: zhj
     username: postgres

@@ -27,7 +27,9 @@ public class AccountService {
     private Account2EntitySwitchMapper account2EntitySwitchMapper;
 
     public Account createAccount(Account account) {
-        accountRepository.findByEmail(account.getEmail()).orElseThrow(() -> new IllegalArgumentException("Account with this email already exists."));
+        if(accountRepository.findByEmail(account.getEmail()).isPresent()) {
+            throw new IllegalArgumentException("Account with this email already exists.");
+        }
         account.setStatus(Account.AccountStatus.CREATED);
         return account2EntitySwitchMapper.map2(accountRepository.save(account2EntitySwitchMapper.map2(account)));
     }

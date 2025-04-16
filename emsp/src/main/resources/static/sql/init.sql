@@ -7,7 +7,7 @@ CREATE TABLE accounts (
                           status account_status NOT NULL DEFAULT 'CREATED',
                           contract_id VARCHAR(255) NOT NULL,
                           created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                          last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                          updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE cards (
@@ -18,9 +18,9 @@ CREATE TABLE cards (
                        status card_status NOT NULL DEFAULT 'CREATED',
                        account_id BIGINT,
                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                       last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
+                       updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
                        FOREIGN KEY (account_id) REFERENCES accounts(id) ON DELETE SET NULL
 );
 
-CREATE INDEX idx_accounts_last_updated ON accounts(last_updated);
-CREATE INDEX idx_cards_last_updated ON cards(last_updated);
+CREATE INDEX idx_accounts_last_updated ON accounts(updated_at);
+CREATE INDEX idx_cards_last_updated ON cards(updated_at);
