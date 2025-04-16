@@ -2,6 +2,7 @@ package com.volvo.emsp.domain;
 
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
@@ -18,6 +19,8 @@ public class Card {
     private LocalDateTime updatedAt;
 
     // Getters and Setters
+    @Getter
+    @RequiredArgsConstructor
     public enum CardStatus {
         CREATED, ASSIGNED, ACTIVATED, DEACTIVATED
     }
