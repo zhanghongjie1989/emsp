@@ -23,8 +23,4 @@ public class AccountResponse {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    // Getters and Setters
-    public enum AccountStatus {
-        CREATED, ACTIVATED, DEACTIVATED
-    }
 }

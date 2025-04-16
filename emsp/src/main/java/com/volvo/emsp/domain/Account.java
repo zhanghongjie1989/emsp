@@ -19,4 +19,5 @@ public class Account {
     public enum AccountStatus {
         CREATED, ACTIVATED, DEACTIVATED
     }
+
 }

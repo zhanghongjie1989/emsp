@@ -1,10 +1,12 @@
 package com.volvo.emsp.controller;
 
+import com.volvo.emsp.common.PageResult;
 import com.volvo.emsp.domain.Account;
 import com.volvo.emsp.domain.mapper.AccountSwitchMapper;
 import com.volvo.emsp.request.AccountRequest;
 import com.volvo.emsp.response.AccountResponse;
 import com.volvo.emsp.service.AccountService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -14,9 +16,11 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/accounts")
+@Tag(name = "account", description = "Operations related to account management")
 public class AccountController {
 
     @Autowired
@@ -40,11 +44,11 @@ public class AccountController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<AccountResponse>> getAccountsByLastUpdated(
+    public ResponseEntity<PageResult<AccountResponse>> getAccountsByLastUpdated(
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime lastUpdated,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
-        Page<AccountResponse> response = accountService.getAccountsByLastUpdated(lastUpdated, page, size);
-        return ResponseEntity.ok(response);
+        List<Account> response = accountService.getAccountsByLastUpdated(lastUpdated, page, size);
+        return ResponseEntity.ok(PageResult.getPageResult(page, size, accountSwitchMapper.map2(accountService.getAccountsByLastUpdated(lastUpdated, page, size))));
     }
 }

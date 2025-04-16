@@ -1,5 +1,7 @@
 package com.volvo.emsp.reposity.entity;
 
+import com.volvo.emsp.domain.Account;
+import com.volvo.emsp.response.AccountResponse;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -14,13 +16,9 @@ public class AccountEntity {
     private String email;
 
     @Enumerated(EnumType.STRING)
-    private AccountStatus status;
+    private Account.AccountStatus status;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    // Getters and Setters
-    public enum AccountStatus {
-        CREATED, ACTIVATED, DEACTIVATED
-    }
 }

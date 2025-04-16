@@ -1,5 +1,6 @@
 package com.volvo.emsp.reposity.entity;
 
+import com.volvo.emsp.domain.Card;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -21,13 +22,10 @@ public class CardEntity {
     private AccountEntity account;
 
     @Enumerated(EnumType.STRING)
-    private CardStatus status;
+    private Card.CardStatus status;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    // Getters and Setters
-    public enum CardStatus {
-        CREATED, ASSIGNED, ACTIVATED, DEACTIVATED
-    }
+
 }
