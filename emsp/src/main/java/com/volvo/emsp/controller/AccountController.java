@@ -46,7 +46,7 @@ public class AccountController {
     @PatchMapping("/account/list")
     public ResponseEntity<PageResult<AccountResponse>> getAccountsByLastUpdated(
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime lastUpdated,
-            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "10") int size) {
         List<Account> response = accountService.getAccountsByLastUpdated(lastUpdated, page, size);
         return ResponseEntity.ok(PageResult.getPageResult(page, size, accountSwitchMapper.map2(accountService.getAccountsByLastUpdated(lastUpdated, page, size))));
