@@ -1,21 +1,18 @@
-CREATE SEQUENCE account_auto_increase;
-CREATE TYPE account_status AS  ENUM('CREATED', 'ACTIVATED', 'DEACTIVATED');
-CREATE TYPE card_status AS  ENUM('CREATED', 'ASSIGNED', 'ACTIVATED', 'DEACTIVATED');
 CREATE TABLE accounts (
-                          id  serial PRIMARY KEY,
+                          id  int8 PRIMARY KEY,
                           email VARCHAR(255) NOT NULL UNIQUE,
-                          status account_status NOT NULL DEFAULT 'CREATED',
+                          status VARCHAR(50) NOT NULL DEFAULT 'CREATED',
                           contract_id VARCHAR(255) NOT NULL,
                           created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                           updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE cards (
-                       id  serial  PRIMARY KEY,
+                       id  int8  PRIMARY KEY,
                        emaid VARCHAR(255) NOT NULL UNIQUE,
                        uid VARCHAR(255) NOT NULL,
                        visible_number VARCHAR(255) NOT NULL,
-                       status card_status NOT NULL DEFAULT 'CREATED',
+                       status VARCHAR(50) NOT NULL DEFAULT 'CREATED',
                        account_id BIGINT,
                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,

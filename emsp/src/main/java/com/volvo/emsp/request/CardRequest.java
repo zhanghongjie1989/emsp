@@ -15,7 +15,6 @@ public class CardRequest {
     private Long id;
     private String emaid;
     private Account account;
-    private String contractId;
     private Card.CardStatus status;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

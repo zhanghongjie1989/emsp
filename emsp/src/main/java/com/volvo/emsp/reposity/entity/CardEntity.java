@@ -22,9 +22,6 @@ public class CardEntity {
     @Column(nullable = false)
     private String emaid;
 
-    @Column(nullable = false)
-    private String contractId;
-
     @ManyToOne
     @JoinColumn(name = "account_id")
     private AccountEntity account;

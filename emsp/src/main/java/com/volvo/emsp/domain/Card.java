@@ -12,7 +12,6 @@ public class Card {
 
     private Long id;
     private String emaid;
-    private String contractId;
     private Account account;
     private CardStatus status;
     private LocalDateTime createdAt;
