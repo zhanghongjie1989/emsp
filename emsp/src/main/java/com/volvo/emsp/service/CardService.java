@@ -21,9 +21,6 @@ public class CardService {
     private Card2EntitySwitchMapper card2EntitySwitchMapper;
 
     public Card createCard(Card card) {
-        card.setStatus(Card.CardStatus.CREATED);
-        card.setCreatedAt(LocalDateTime.now());
-        card.setUpdatedAt(LocalDateTime.now());
         return card2EntitySwitchMapper.map2(cardRepository.save(card2EntitySwitchMapper.map2(card)));
     }
 

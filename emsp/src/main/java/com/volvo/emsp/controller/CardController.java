@@ -27,7 +27,7 @@ public class CardController {
     @Autowired
     private CardSwitchMapper cardSwitchMapper;
 
-    @PostMapping
+    @PostMapping("/card/create")
     public ResponseEntity<CardResponse> createCard(@RequestBody CardRequest request) {
         Card card = cardService.createCard(cardSwitchMapper.map2(request));
         return ResponseEntity.status(HttpStatus.CREATED).body(cardSwitchMapper.map2(card));
