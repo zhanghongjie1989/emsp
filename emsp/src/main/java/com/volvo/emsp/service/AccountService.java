@@ -1,6 +1,7 @@
 package com.volvo.emsp.service;
 
 
+import com.volvo.emsp.common.EMAIDGenerator;
 import com.volvo.emsp.common.PageResult;
 import com.volvo.emsp.domain.Account;
 import com.volvo.emsp.domain.mapper.AccountSwitchMapper;
@@ -31,6 +32,7 @@ public class AccountService {
             throw new IllegalArgumentException("Account with this email already exists.");
         }
         account.setStatus(Account.AccountStatus.CREATED);
+        account.setContractId(account.generateEmaid());
         return account2EntitySwitchMapper.map2(accountRepository.save(account2EntitySwitchMapper.map2(account)));
     }
 

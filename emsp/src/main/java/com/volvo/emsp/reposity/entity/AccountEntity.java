@@ -24,6 +24,9 @@ public class AccountEntity {
     @Column(unique = true, nullable = false)
     private String email;
 
+    @Column(unique = true, nullable = false)
+    private String contractId;
+
     @Enumerated(EnumType.STRING)
     private Account.AccountStatus status;
 
