@@ -37,7 +37,7 @@ public class AccountController {
 
     @PatchMapping("/account/status")
     public ResponseEntity<AccountResponse> changeAccountStatus(
-            @PathVariable String email,
+            @RequestParam String email,
             @RequestParam Account.AccountStatus newStatus) {
         Account account = accountService.changeAccountStatus(email, newStatus);
         return ResponseEntity.ok(accountSwitchMapper.map2(account));
