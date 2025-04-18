@@ -1,6 +1,7 @@
 package com.volvo.emsp.domain;
 
 
+import com.volvo.emsp.common.RFIDUIDGenerator;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
 public class Card {
 
     private Long id;
+    private String UID;
     private String emaid;
     private String accountId;
     private CardStatus status;
@@ -22,6 +24,10 @@ public class Card {
     @RequiredArgsConstructor
     public enum CardStatus {
         CREATED, ASSIGNED, ACTIVATED, DEACTIVATED
+    }
+
+    public String getUID() {
+        return RFIDUIDGenerator.generateUID();
     }
 
 }

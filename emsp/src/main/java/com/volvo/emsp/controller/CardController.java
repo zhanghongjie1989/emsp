@@ -33,11 +33,11 @@ public class CardController {
         return ResponseEntity.status(HttpStatus.CREATED).body(cardSwitchMapper.map2(card));
     }
 
-    @PostMapping("/{emaid}/assign")
+    @PostMapping("/card/assign")
     public ResponseEntity<CardResponse> assignCardToAccount(
-            @PathVariable String emaid,
+            @RequestParam String cardId,
             @RequestParam String email) {
-        Card card = cardService.assignCardToAccount(emaid, email);
+        Card card = cardService.assignCardToAccount(cardId, email);
         return ResponseEntity.ok(cardSwitchMapper.map2(card));
     }
 

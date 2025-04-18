@@ -21,6 +21,7 @@ public class CardService {
     private Card2EntitySwitchMapper card2EntitySwitchMapper;
 
     public Card createCard(Card card) {
+        card.setUID(card.getUID());
         return card2EntitySwitchMapper.map2(cardRepository.save(card2EntitySwitchMapper.map2(card)));
     }
 

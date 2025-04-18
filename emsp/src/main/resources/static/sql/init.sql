@@ -1,5 +1,5 @@
 CREATE TABLE accounts (
-                          id  int8 PRIMARY KEY,
+                          id  bigserial PRIMARY KEY,
                           email VARCHAR(255) NOT NULL UNIQUE,
                           status VARCHAR(50) NOT NULL DEFAULT 'CREATED',
                           contract_id VARCHAR(255) NOT NULL,
@@ -8,12 +8,10 @@ CREATE TABLE accounts (
 );
 
 CREATE TABLE cards (
-                       id  int8  PRIMARY KEY,
-                       emaid VARCHAR(255) NOT NULL UNIQUE,
+                       id  bigserial  PRIMARY KEY,
                        uid VARCHAR(255) NOT NULL,
-                       visible_number VARCHAR(255) NOT NULL,
                        status VARCHAR(50) NOT NULL DEFAULT 'CREATED',
-                       account_id BIGINT,
+                       account_id int8,
                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
                        FOREIGN KEY (account_id) REFERENCES accounts(id) ON DELETE SET NULL
