@@ -13,8 +13,7 @@ public class Card {
 
     private Long id;
     private String UID;
-    private String emaid;
-    private String accountId;
+    private Account account;
     private CardStatus status;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

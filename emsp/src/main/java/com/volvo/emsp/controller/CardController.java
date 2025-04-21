@@ -35,9 +35,9 @@ public class CardController {
 
     @PostMapping("/card/assign")
     public ResponseEntity<CardResponse> assignCardToAccount(
-            @RequestParam String cardId,
+            @RequestParam String uid,
             @RequestParam String email) {
-        Card card = cardService.assignCardToAccount(cardId, email);
+        Card card = cardService.assignCardToAccount(uid, email);
         return ResponseEntity.ok(cardSwitchMapper.map2(card));
     }
 

@@ -2,9 +2,9 @@ package com.volvo.emsp.service;
 
 
 import com.volvo.emsp.domain.Card;
+import com.volvo.emsp.reposity.AccountRepository;
 import com.volvo.emsp.reposity.CardRepository;
 import com.volvo.emsp.reposity.mapper.Card2EntitySwitchMapper;
-import com.volvo.emsp.request.CardRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +16,8 @@ public class CardService {
 
     @Autowired
     private CardRepository cardRepository;
+    @Autowired
+    private AccountRepository accountRepository;
 
     @Autowired
     private Card2EntitySwitchMapper card2EntitySwitchMapper;
@@ -25,9 +27,12 @@ public class CardService {
         return card2EntitySwitchMapper.map2(cardRepository.save(card2EntitySwitchMapper.map2(card)));
     }
 
-    public Card assignCardToAccount(String cardId, String accountId) {
-        // Implementation omitted for brevity
-        return null;
+    public Card assignCardToAccount(String uid, String email) {
+        accountRepository.findByEmail(email).ifPresent(account -> {
+            cardRepository.findByUid(uid).ifPresent(card -> {card.setAccount(account);
+            cardRepository.save(card);});
+        });
+        return card2EntitySwitchMapper.map2(cardRepository.findByUid(uid));
     }
 
     public Card changeCardStatus(String emaid, Card.CardStatus newStatus) {

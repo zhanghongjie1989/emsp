@@ -20,7 +20,7 @@ public class CardEntity {
     private Long id;
 
     @Column(nullable = false)
-    private String emaid;
+    private String uid;
 
     @ManyToOne
     @JoinColumn(name = "account_id")
