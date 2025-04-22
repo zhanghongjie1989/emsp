@@ -29,7 +29,7 @@ public class CardService {
 
     public Card assignCardToAccount(String uid, String email) {
         accountRepository.findByEmail(email).ifPresent(account -> {
-            cardRepository.findByUID(uid).ifPresent(card -> {card.setAccount(account);
+            cardRepository.findByUID(uid).ifPresent(card -> {card.setAccount(account); card.setUpdatedAt(LocalDateTime.now());
             cardRepository.save(card);});
         });
         return card2EntitySwitchMapper.map2(cardRepository.findByUID(uid));
