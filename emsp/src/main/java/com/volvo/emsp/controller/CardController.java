@@ -2,13 +2,11 @@ package com.volvo.emsp.controller;
 
 import com.volvo.emsp.common.PageResult;
 import com.volvo.emsp.domain.Card;
-import com.volvo.emsp.domain.mapper.AccountSwitchMapper;
 import com.volvo.emsp.domain.mapper.CardSwitchMapper;
-import com.volvo.emsp.request.CardRequest;
-import com.volvo.emsp.response.CardResponse;
+import com.volvo.emsp.controller.request.CardRequest;
+import com.volvo.emsp.controller.response.CardResponse;
 import com.volvo.emsp.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,9 +33,9 @@ public class CardController {
 
     @PostMapping("/card/assign")
     public ResponseEntity<CardResponse> assignCardToAccount(
-            @RequestParam String uid,
+            @RequestParam String UID,
             @RequestParam String email) {
-        Card card = cardService.assignCardToAccount(uid, email);
+        Card card = cardService.assignCardToAccount(UID, email);
         return ResponseEntity.ok(cardSwitchMapper.map2(card));
     }
 

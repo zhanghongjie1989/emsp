@@ -1,22 +1,16 @@
 package com.volvo.emsp.service;
 
 
-import com.volvo.emsp.common.EMAIDGenerator;
-import com.volvo.emsp.common.PageResult;
 import com.volvo.emsp.domain.Account;
-import com.volvo.emsp.domain.mapper.AccountSwitchMapper;
 import com.volvo.emsp.reposity.AccountRepository;
 import com.volvo.emsp.reposity.mapper.Account2EntitySwitchMapper;
-import com.volvo.emsp.response.AccountResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class AccountService {
