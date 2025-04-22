@@ -39,11 +39,11 @@ public class CardController {
         return ResponseEntity.ok(cardSwitchMapper.map2(card));
     }
 
-    @PatchMapping("/{emaid}/status")
+    @PatchMapping("/card/status")
     public ResponseEntity<CardResponse> changeCardStatus(
-            @PathVariable String emaid,
+            @RequestParam String UID,
             @RequestParam Card.CardStatus newStatus) {
-        return ResponseEntity.ok(cardSwitchMapper.map2(cardService.changeCardStatus(emaid, newStatus)));
+        return ResponseEntity.ok(cardSwitchMapper.map2(cardService.changeCardStatus(UID, newStatus)));
     }
 
     @GetMapping

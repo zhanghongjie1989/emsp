@@ -35,8 +35,13 @@ public class CardService {
         return card2EntitySwitchMapper.map2(cardRepository.findByUID(uid));
     }
 
-    public Card changeCardStatus(String emaid, Card.CardStatus newStatus) {
-        return null;
+    public Card changeCardStatus(String UID, Card.CardStatus newStatus) {
+        cardRepository.findByUID(UID).ifPresent(card -> {
+            card.setStatus(newStatus);
+            card.setUpdatedAt(LocalDateTime.now());
+            cardRepository.save(card);
+    });
+        return card2EntitySwitchMapper.map2(cardRepository.findByUID(UID));
     }
 
     public List<Card> getCardsByLastUpdated(LocalDateTime lastUpdated, int page, int size) {
