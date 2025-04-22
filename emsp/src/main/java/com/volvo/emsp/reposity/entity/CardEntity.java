@@ -16,11 +16,11 @@ import java.time.LocalDateTime;
 @Table(name = "cards", schema = "account")
 public class CardEntity {
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String uid;
+    @Column(name = "uid", nullable = false)
+    private String UID;
 
     @ManyToOne
     @JoinColumn(name = "account_id")

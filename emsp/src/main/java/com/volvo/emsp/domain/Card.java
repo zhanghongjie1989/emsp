@@ -25,7 +25,7 @@ public class Card {
         CREATED, ASSIGNED, ACTIVATED, DEACTIVATED
     }
 
-    public String getUID() {
+    public String generateUID() {
         return RFIDUIDGenerator.generateUID();
     }
 

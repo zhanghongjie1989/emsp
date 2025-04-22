@@ -23,16 +23,16 @@ public class CardService {
     private Card2EntitySwitchMapper card2EntitySwitchMapper;
 
     public Card createCard(Card card) {
-        card.setUID(card.getUID());
+        card.setUID(card.generateUID());
         return card2EntitySwitchMapper.map2(cardRepository.save(card2EntitySwitchMapper.map2(card)));
     }
 
     public Card assignCardToAccount(String uid, String email) {
         accountRepository.findByEmail(email).ifPresent(account -> {
-            cardRepository.findByUid(uid).ifPresent(card -> {card.setAccount(account);
+            cardRepository.findByUID(uid).ifPresent(card -> {card.setAccount(account);
             cardRepository.save(card);});
         });
-        return card2EntitySwitchMapper.map2(cardRepository.findByUid(uid));
+        return card2EntitySwitchMapper.map2(cardRepository.findByUID(uid));
     }
 
     public Card changeCardStatus(String emaid, Card.CardStatus newStatus) {
