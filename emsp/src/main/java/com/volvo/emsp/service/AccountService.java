@@ -39,7 +39,7 @@ public class AccountService {
     }
 
     public List<Account> getAccountsByLastUpdated(LocalDateTime lastUpdated, int page, int size) {
-        Pageable pageable = PageRequest.of(page, size);
+        Pageable pageable = PageRequest.of(page-1, size);
         return account2EntitySwitchMapper.map2(accountRepository.findByUpdatedAt(lastUpdated, pageable));
     }
 }

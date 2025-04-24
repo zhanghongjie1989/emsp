@@ -7,6 +7,7 @@ import com.volvo.emsp.reposity.entity.AccountEntity;
 import com.volvo.emsp.reposity.entity.CardEntity;
 import org.mapstruct.Mapper;
 
+import java.util.List;
 import java.util.Optional;
 
 @Mapper(componentModel = "spring")
@@ -17,4 +18,6 @@ public interface Card2EntitySwitchMapper {
     Card map2(CardEntity card);
 
     Card map2(Optional<CardEntity> byUid);
+
+    List<Card> map2(List<CardEntity> byUpdatedAt);
 }

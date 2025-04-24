@@ -6,6 +6,8 @@ import com.volvo.emsp.reposity.AccountRepository;
 import com.volvo.emsp.reposity.CardRepository;
 import com.volvo.emsp.reposity.mapper.Card2EntitySwitchMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -45,6 +47,7 @@ public class CardService {
     }
 
     public List<Card> getCardsByLastUpdated(LocalDateTime lastUpdated, int page, int size) {
-        return null;
+        Pageable pageable = PageRequest.of(page-1, size);
+        return card2EntitySwitchMapper.map2(cardRepository.findByUpdatedAtGreaterThanEqual(lastUpdated, pageable));
     }
 }

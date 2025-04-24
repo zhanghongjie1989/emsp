@@ -49,7 +49,7 @@ public class CardController {
     @GetMapping
     public ResponseEntity<PageResult<CardResponse>> getCardsByLastUpdated(
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime lastUpdated,
-            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "10") int size) {
         return ResponseEntity.ok(PageResult.getPageResult(page, size, cardSwitchMapper.map2(cardService.getCardsByLastUpdated(lastUpdated, page, size))));
     }

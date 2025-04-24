@@ -18,7 +18,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class CardResponse {
     private Long id;
-    private String email;
+    private String UID;
+    private Account account;
     private Card.CardStatus status;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
