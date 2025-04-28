@@ -177,13 +177,13 @@
                     <baseImage>openjdk</baseImage>
                     <!--                    <baseImage>openjdk:8u312-slim</baseImage>-->
                     <!--镜像制作人本人信息 -->
-                    <maintainer>hugejiletu@163.com</maintainer>
+                    <maintainer>zhanghongjie163@163.com</maintainer>
                     <!--切换到ROOT目录-->
-                    <workdir>/ROOT</workdir>
+                    <workdir>/app</workdir>
                     <!--查看我们的java版本-->
                     <cmd>["java", "-version"]</cmd>
                     <!--${project.build.finalName}.jar是打包后生成的jar包的名字-->
-                    <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
+                    <entryPoint>["java", "-jar", "/${project.build.finalName}.jar" ,"--spring.profiles.active=dev"]</entryPoint>
                     <!--指定远程 docker api地址  http://ip：port 与 tcp://ip:port 相同的ip端口-->
                     <dockerHost>http://172.25.194.25:2375</dockerHost>
                     <!-- 这里是复制 jar 包到 docker 容器指定目录配置 -->
@@ -197,6 +197,13 @@
                         </resource>
                     </resources>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>javax.activation</groupId>
+                        <artifactId>activation</artifactId>
+                        <version>1.1.1</version>
+                    </dependency>
+                </dependencies>
             </plugin>
        </plugins>
     </build>
