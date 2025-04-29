@@ -11,6 +11,7 @@
     <groupId>com.volvo</groupId>
     <artifactId>emsp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
     <name>emsp</name>
     <description>emsp</description>
     <url/>
@@ -140,7 +141,10 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+
                 <configuration>
+                    <finalName>${project.build.finalName}</finalName>
+                    <mainClass>${spring-boot.run.main-class}</mainClass>
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>
@@ -148,6 +152,13 @@
                         </exclude>
                     </excludes>
                 </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <!-- docker打包插件 -->
             <plugin>
